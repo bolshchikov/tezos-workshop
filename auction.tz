@@ -1,0 +1,46 @@
+parameter mutez;
+storage (pair address mutez);
+code {
+     DUP;
+     UNPAIR;
+     DIP {DUP};
+     SWAP;
+     CAR @owner_address;
+     SENDER;
+     IFCMPNEQ {
+        SWAP;
+        UNPAIR @owner_address @current_bid;
+        DROP;
+        SWAP;
+        IFCMPGT {
+           UNPAIR; 
+           SWAP;
+           UNPAIR;
+           SWAP;
+           DROP;
+           PAIR;
+           NIL operation;
+           PAIR;
+        } {
+            UNPAIR;
+            DROP;
+            NIL operation;
+            PAIR;
+        };
+     } {
+        DROP;
+        UNPAIR;
+        CONTRACT unit;
+        IF_SOME {
+            SWAP;
+            UNIT;
+            TRANSFER_TOKENS;
+            NIL operation; SWAP; CONS;
+            SWAP;
+            CDR;
+            SWAP;
+            PAIR;
+        }
+        {DROP; NIL operation; SWAP; CDR; SWAP; PAIR;}
+     }
+     };
