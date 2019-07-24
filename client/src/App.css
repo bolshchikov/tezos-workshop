@@ -1,0 +1,17 @@
+.App {
+  margin: 2rem;
+}
+
+.App-header {
+  text-align: center;
+}
+
+.App-search {
+  margin: 3rem;
+  width: 100%;
+}
+
+.ui.input {
+  width: 40%;
+  margin-right: 15px;
+}
